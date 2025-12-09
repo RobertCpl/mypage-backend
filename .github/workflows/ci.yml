@@ -64,7 +64,7 @@ jobs:
         script: |
           cd mypage 
           docker rm -f mypage-backend || true
-          docker run -d --name mypage-backend \ 
+          docker run -d --name mypage-backend \
           --pull=always \
           --restart=always \
           --network nginx-proxy_internal_net \
