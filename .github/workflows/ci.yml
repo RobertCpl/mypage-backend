@@ -68,6 +68,6 @@ jobs:
           --pull=always \
           --restart=always \
           --network nginx-setup_internal-net \
-          --env-file ./backend/.env.backend \
+          --env-file .env.backend \
           ${{ secrets.DOCKERHUB_USERNAME }}/mypage-backend:latest
 
