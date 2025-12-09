@@ -64,11 +64,10 @@ jobs:
         script: |
           cd mypage 
           docker rm -f mypage-backend || true
-          docker run -d --name mypage-backend / 
-          --pull=always /
-          --restart=always /
-          --network nginx-proxy_internal_net /
-          --name mypage-backend /
-          --env-file ./backend/.env.backend /
+          docker run -d --name mypage-backend \ 
+          --pull=always \
+          --restart=always \
+          --network nginx-proxy_internal_net \
+          --env-file ./backend/.env.backend \
           ${{ secrets.DOCKERHUB_USERNAME }}/mypage-backend:latest
 
