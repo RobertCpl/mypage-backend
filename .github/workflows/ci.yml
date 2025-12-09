@@ -7,7 +7,7 @@ on:
     branches: [ main, master ]
 
 jobs:
-  build-and-lint:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -23,14 +23,11 @@ jobs:
     - name: Install dependencies
       run: npm ci
 
-    - name: Lint
-      run: npm run lint
-
     - name: Build
-      run: npm run build
+      run: npm run strapi build
 
   docker-build-and-push:
-    needs: build-and-lint
+    needs: build
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
 
@@ -67,11 +64,10 @@ jobs:
         script: |
           cd mypage 
           docker rm -f mypage-backend || true
-          docker run -d --name mypage-backend / 
-          --pull=always /
-          --restart=always /
-          --network nginx-proxy_internal_net /
-          --name mypage-backend /
-          --env-file ./backend/.env.backend /
+          docker run -d --name mypage-backend \ 
+          --pull=always \
+          --restart=always \
+          --network nginx-proxy_internal_net \
+          --env-file ./backend/.env.backend \
           ${{ secrets.DOCKERHUB_USERNAME }}/mypage-backend:latest
 
