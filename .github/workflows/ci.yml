@@ -67,7 +67,7 @@ jobs:
           docker run -d --name mypage-backend \
           --pull=always \
           --restart=always \
-          --network nginx-setup_internal-net \
+          --network nginx-proxy_internal-net \
           --env-file .env.backend \
           ${{ secrets.DOCKERHUB_USERNAME }}/mypage-backend:latest
 
